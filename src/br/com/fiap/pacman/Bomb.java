@@ -2,6 +2,7 @@ package br.com.fiap.pacman;
 
 public class Bomb extends Item {
 	
+
 	
 	public Bomb() {
 		
@@ -11,6 +12,5 @@ public class Bomb extends Item {
 		setX(x);
 		setY(y);
 	}
-	
 	
 }

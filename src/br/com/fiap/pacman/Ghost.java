@@ -1,10 +1,11 @@
 package br.com.fiap.pacman;
 
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Ghost extends GameObject{
 	
-	Random random = new Random();
 	
 	private int direction;
 
@@ -42,10 +43,25 @@ public boolean verifica(){
 		}
 	
 	
-		public void move() {
+		public void move() {	
+			
 			if (verifica() == true){
 				
-				switch (direction) {
+				int delay = 1000;   // delay de 5 seg.
+				int interval = 1000;  // intervalo de 1 seg.
+				Timer timer = new Timer();
+
+				timer.scheduleAtFixedRate(new TimerTask() {
+				        public void run() {
+				        	 
+				        	 Random random = new Random(7);
+							 setDirection(random.nextInt(3)); 
+					
+							
+				        }
+				    }, delay, interval);
+				
+				switch (getDirection()) {
 				case 0: 
 					setY(getY()-10);
 				break;	
@@ -60,6 +76,7 @@ public boolean verifica(){
 				break;
 				}
 			}
+			System.out.println("Ghost: " + getDirection());
 		}
 	
 
@@ -67,9 +84,9 @@ public boolean verifica(){
 		return direction;
 	}
 
-	public void setDirection() {
-
-	switch(random.nextInt(3)) {
+	public void setDirection(int r) {
+	
+	switch(r) {
 		case 0:
 			this.direction = 0; 
 			
@@ -84,8 +101,5 @@ public boolean verifica(){
 		
 		}
 }
-	
-	
-	
-	
+		
 }

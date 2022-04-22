@@ -5,6 +5,7 @@ public class Player extends GameObject{
 	
 	private int direction;
 	private int life;
+	private boolean invencivel;
 	
 	
 	public Player() {
@@ -59,6 +60,9 @@ public class Player extends GameObject{
 				break;
 				}
 			}
+			
+			System.out.println("Player: " +getDirection());
+			
 		}
 	
 	
@@ -77,6 +81,14 @@ public class Player extends GameObject{
 
 	public void setLife(int life) {
 		this.life = life;
+	}
+
+	public boolean isInvencivel() {
+		return invencivel;
+	}
+
+	public void setInvencivel(boolean invencivel) {
+		this.invencivel = invencivel;
 	}
 	
 	

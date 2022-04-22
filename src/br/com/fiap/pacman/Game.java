@@ -3,6 +3,9 @@ package br.com.fiap.pacman;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -13,12 +16,12 @@ public class Game extends JFrame implements KeyListener {
 
 	private static final long serialVersionUID = 1L;
 	private Player player = new Player(50, 50, 180);
-	private Ghost ghost1 = new Ghost(0,0,0);
+	private Ghost ghost1 = new Ghost(500,400,0);
 	private Ghost ghost2 = new Ghost(500,0,0);
 	private Ghost ghost3 = new Ghost(0,500,0);
 	private Ghost ghost4 = new Ghost(500,500,0);
 	private Bomb bomb = new Bomb(100,100);
-	private Booster booster = new Booster(400, 400);
+	private Booster booster = new Booster(400, 400, 2000);
 
 	private JLabel imgPlayer = new JLabel(new ImageIcon("src/images/pacman.png"));
 	private JLabel imgGhost1 = new JLabel(new ImageIcon("src/images/ghost.png"));
@@ -87,12 +90,25 @@ public class Game extends JFrame implements KeyListener {
 	private void run() {
 		while (player.getLife() > 0) {
 			
-			//coloque aqui os métodos de movimentação e colisão 
+			if(!player.isInvencivel()) {
+			 	if(player.getX() -  ghost1.getX() == 0 && player.getY() -  ghost1.getY() == 0) player.setLife(player.getLife()-1);
+			 	if(player.getX() -  ghost2.getX() == 0 && player.getY() -  ghost2.getY() == 0) player.setLife(player.getLife()-1);
+			 	if(player.getX() -  ghost3.getX() == 0 && player.getY() -  ghost3.getY() == 0) player.setLife(player.getLife()-1);
+			 	if(player.getX() -  ghost4.getX() == 0 && player.getY() -  ghost4.getY() == 0) player.setLife(player.getLife()-1);
+			 	if(player.getX() -  bomb.getX() == 0 && player.getY() -  bomb.getY() == 0) player.setLife(player.getLife()-1);
+			}
+			
+			if(player.getX() -  booster.getX() == 0 && player.getY() -  booster.getY() == 0) player.isInvencivel();
 			
 			
-			player.move();
-		//	ghost1.setDirection();
+			
 			ghost1.move();
+//			ghost2.move();
+//			ghost3.move();
+//			ghost4.move();
+   		
+			player.move();
+			
 			
 			
 			try {
