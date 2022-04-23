@@ -10,6 +10,9 @@ public class Ghost extends GameObject{
 	private int direction;
 
 	public Ghost() {
+		setX(0);
+		setY(0);
+		this.setDirection(direction); 
 	}
 	
 	public Ghost(int x, int y, int direction) {
@@ -18,7 +21,7 @@ public class Ghost extends GameObject{
 		this.direction = direction;
 	}
 	
-public boolean verifica(){
+	public boolean verifica(){
 		
 		int x = getX();
 		int y = getY();
@@ -47,19 +50,14 @@ public boolean verifica(){
 			
 			if (verifica() == true){
 				
-				int delay = 1000;   // delay de 5 seg.
-				int interval = 1000;  // intervalo de 1 seg.
 				Timer timer = new Timer();
 
-				timer.scheduleAtFixedRate(new TimerTask() {
-				        public void run() {
-				        	 
-				        	 Random random = new Random(7);
+				timer.schedule(new TimerTask() {
+				        public void run() {	 
+				        	 Random random = new Random();
 							 setDirection(random.nextInt(3)); 
-					
-							
 				        }
-				    }, delay, interval);
+				    }, 3000);
 				
 				switch (getDirection()) {
 				case 0: 
@@ -76,7 +74,7 @@ public boolean verifica(){
 				break;
 				}
 			}
-			System.out.println("Ghost: " + getDirection());
+		
 		}
 	
 
@@ -89,16 +87,16 @@ public boolean verifica(){
 	switch(r) {
 		case 0:
 			this.direction = 0; 
-			
+		break;	
 		case 1:
 			this.direction = 90;
-		
+		break;	
 		case 2:
 			this.direction = 180;
-		
+		break;	
 		case 3:
 			this.direction = 270;	
-		
+		break;	
 		}
 }
 		

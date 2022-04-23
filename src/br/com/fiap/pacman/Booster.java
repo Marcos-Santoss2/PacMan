@@ -20,24 +20,20 @@ public class Booster extends Item{
 		
 	}
 	
-	public void habilidade(Player player){
+	public void boosterSkill(Player player){
 		
-
 		Timer timer = new Timer();
 		
 		setVisivel(false);
 		player.setInvencivel(true);
-		System.out.println("Invencivel");
+		System.out.println("Habilidade Ativada");
 		
-		TimerTask TornarVencivel = new TimerTask() {
-			 @Override
-			    public void run() {
-			        player.setInvencivel(false);
-			        System.out.println("Vencivel");
-			   };
-		};
-		
-		timer.schedule(TornarVencivel, duracao);	
+		timer.schedule(new TimerTask() {
+		    public void run() {
+		    	System.out.println("Habilidade Desativada");
+		        player.setInvencivel(false);
+		   };
+	}, duracao);	
 		
 		}
 	

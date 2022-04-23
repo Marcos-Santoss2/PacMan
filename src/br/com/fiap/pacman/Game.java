@@ -21,7 +21,7 @@ public class Game extends JFrame implements KeyListener {
 	private Ghost ghost3 = new Ghost(0,500,0);
 	private Ghost ghost4 = new Ghost(500,500,0);
 	private Bomb bomb = new Bomb(100,100);
-	private Booster booster = new Booster(400, 400, 2000);
+	private Booster booster = new Booster(400, 400, 15000);
 
 	private JLabel imgPlayer = new JLabel(new ImageIcon("src/images/pacman.png"));
 	private JLabel imgGhost1 = new JLabel(new ImageIcon("src/images/ghost.png"));
@@ -90,25 +90,32 @@ public class Game extends JFrame implements KeyListener {
 	private void run() {
 		while (player.getLife() > 0) {
 			
+			player.move();
+			ghost1.move();
+			ghost2.move();
+			ghost3.move();
+			ghost4.move();
+			
+			if(player.getX() - booster.getX() == 0 && player.getY() - booster.getY() == 0) {
+				booster.boosterSkill(player);
+				booster.setVisivel(false);
+				remove(imgBooster);
+				}
+			
+			
 			if(!player.isInvencivel()) {
-			 	if(player.getX() -  ghost1.getX() == 0 && player.getY() -  ghost1.getY() == 0) player.setLife(player.getLife()-1);
+			 	
+				if(player.getX() -  ghost1.getX() == 0 && player.getY() -  ghost1.getY() == 0) player.setLife(player.getLife()-1);
 			 	if(player.getX() -  ghost2.getX() == 0 && player.getY() -  ghost2.getY() == 0) player.setLife(player.getLife()-1);
 			 	if(player.getX() -  ghost3.getX() == 0 && player.getY() -  ghost3.getY() == 0) player.setLife(player.getLife()-1);
 			 	if(player.getX() -  ghost4.getX() == 0 && player.getY() -  ghost4.getY() == 0) player.setLife(player.getLife()-1);
-			 	if(player.getX() -  bomb.getX() == 0 && player.getY() -  bomb.getY() == 0) player.setLife(player.getLife()-1);
-			}
-			
-			if(player.getX() -  booster.getX() == 0 && player.getY() -  booster.getY() == 0) player.isInvencivel();
-			
-			
-			
-			ghost1.move();
-//			ghost2.move();
-//			ghost3.move();
-//			ghost4.move();
-   		
-			player.move();
-			
+			 	
+			 	if(player.getX() -  bomb.getX() == 0 && player.getY() -  bomb.getY() == 0) {
+			 		player.setLife(player.getLife()-1);
+			 		bomb.setVisivel(false);
+			 		remove(imgBomb);
+			 		}
+			 	}
 			
 			
 			try {

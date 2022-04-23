@@ -16,8 +16,7 @@ public class Item extends GameObject {
 		setY(y);
 		
 	}
-	
-	
+		
 	public boolean isVisivel() {
 		return visivel;
 	}
@@ -25,12 +24,5 @@ public class Item extends GameObject {
 	public void setVisivel(boolean visivel) {
 		this.visivel = visivel;
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 }

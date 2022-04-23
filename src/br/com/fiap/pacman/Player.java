@@ -9,12 +9,17 @@ public class Player extends GameObject{
 	
 	
 	public Player() {
+		setX(0);
+		setY(0);
+		setDirection(direction);
+		this.invencivel =false;
 	}
 	
 	public Player(int x, int y, int direction) {
 		setX(x);
 		setY(y);
 		this.direction = direction;
+		this.invencivel = false;
 	}
 	
 	public boolean verifica(){
@@ -61,7 +66,6 @@ public class Player extends GameObject{
 				}
 			}
 			
-			System.out.println("Player: " +getDirection());
 			
 		}
 	
@@ -84,6 +88,7 @@ public class Player extends GameObject{
 	}
 
 	public boolean isInvencivel() {
+
 		return invencivel;
 	}
 
